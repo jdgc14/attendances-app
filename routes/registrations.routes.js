@@ -1,5 +1,6 @@
 const express = require('express')
 
+// Controllers
 const {
     createRegistration,
     readAllRegistrations,

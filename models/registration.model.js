@@ -11,6 +11,7 @@ const Registration = db.define('registration', {
     entranceTime: {
         type: DataTypes.DATE,
         allowNull: false,
+        defaultValue: DataTypes.NOW,
     },
     exitTime: {
         type: DataTypes.DATE,
