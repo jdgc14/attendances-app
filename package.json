@@ -1,0 +1,20 @@
+{
+    "name": "attendances-app",
+    "version": "1.0.0",
+    "description": "The objective of this application is to record the time of entry and exit of the workers of the company.",
+    "main": "app.js",
+    "scripts": {
+        "start": "nodemon server.js"
+    },
+    "author": "jdgc14",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.18.1",
+        "pg": "^8.8.0",
+        "pg-hstore": "^2.3.4",
+        "sequelize": "^6.21.4"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.19"
+    }
+}
