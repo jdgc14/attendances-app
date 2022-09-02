@@ -1,6 +1,7 @@
 // Import models
 const { Registration } = require('../models/registration.model')
 
+// Validate registration exist
 const findRegistration = async (req, res, next) => {
     try {
         const { id } = req.params
@@ -21,4 +22,20 @@ const findRegistration = async (req, res, next) => {
     }
 }
 
-module.exports = { findRegistration }
+// Validate status of registration is 'working'
+const registrarionIsActive = async (req, res, next) => {
+    try {
+        const { registrationById } = req
+
+        if (registrationById.status !== 'working') {
+            return res.status(400).json({
+                status: 'error',
+                message: `Registration already ${registrationById.status}`,
+            })
+        }
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+module.exports = { findRegistration, registrarionIsActive }

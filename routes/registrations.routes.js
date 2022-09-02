@@ -10,7 +10,10 @@ const {
 } = require('../controllers/registrations.controllers')
 
 // Import middlewares
-const { findRegistration } = require('../middlewares/registrations.middlewares')
+const {
+    findRegistration,
+    registrarionIsActive,
+} = require('../middlewares/registrations.middlewares')
 
 // Create registrationRouter
 const registrationRouter = express.Router()
@@ -19,7 +22,17 @@ const registrationRouter = express.Router()
 registrationRouter.post('/', createRegistration)
 registrationRouter.get('/', readAllRegistrations)
 registrationRouter.get('/:id', findRegistration, readRegistrationById)
-registrationRouter.patch('/:id', findRegistration, updateRegistrationById)
-registrationRouter.delete('/:id', findRegistration, deleteRegistrationById)
+registrationRouter.patch(
+    '/:id',
+    findRegistration,
+    registrarionIsActive,
+    updateRegistrationById
+)
+registrationRouter.delete(
+    '/:id',
+    findRegistration,
+    registrarionIsActive,
+    deleteRegistrationById
+)
 
 module.exports = { registrationRouter }
