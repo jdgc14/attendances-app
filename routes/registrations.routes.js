@@ -1,6 +1,6 @@
 const express = require('express')
 
-// Controllers
+// Import controllers
 const {
     createRegistration,
     readAllRegistrations,
@@ -9,14 +9,17 @@ const {
     deleteRegistrationById,
 } = require('../controllers/registrations.controllers')
 
+// Import middlewares
+const { findRegistration } = require('../middlewares/registrations.middlewares')
+
 // Create registrationRouter
 const registrationRouter = express.Router()
 
 // Create endpoints
 registrationRouter.post('/', createRegistration)
 registrationRouter.get('/', readAllRegistrations)
-registrationRouter.get('/:id', readRegistrationById)
-registrationRouter.patch('/:id', updateRegistrationById)
-registrationRouter.delete('/:id', deleteRegistrationById)
+registrationRouter.get('/:id', findRegistration, readRegistrationById)
+registrationRouter.patch('/:id', findRegistration, updateRegistrationById)
+registrationRouter.delete('/:id', findRegistration, deleteRegistrationById)
 
 module.exports = { registrationRouter }

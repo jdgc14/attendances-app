@@ -1,0 +1,24 @@
+// Import models
+const { Registration } = require('../models/registration.model')
+
+const findRegistration = async (req, res, next) => {
+    try {
+        const { id } = req.params
+
+        const registrationById = await Registration.findOne({ where: { id } })
+
+        // If registration by id doesn't exist send message error
+        if (!registrationById) {
+            return res.status(404).json({
+                status: 'error',
+                message: `Registration by ${id} id not found`,
+            })
+        }
+        req.registrationById = registrationById
+        next()
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+module.exports = { findRegistration }

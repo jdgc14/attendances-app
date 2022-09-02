@@ -29,17 +29,7 @@ const readAllRegistrations = async (req, res) => {
 
 const readRegistrationById = async (req, res) => {
     try {
-        const { id } = req.params
-
-        const registrationById = await Registration.findOne({ where: { id } })
-
-        // If registration by id doesn't exist send message error
-        if (!readRegistrationById) {
-            return res.status(404).json({
-                status: 'error',
-                message: `Registration by ${id} id not found`,
-            })
-        }
+        const { registrationById } = req
 
         res.status(200).json({
             status: 'success',
@@ -52,18 +42,9 @@ const readRegistrationById = async (req, res) => {
 
 const updateRegistrationById = async (req, res) => {
     try {
-        const { id } = req.params
         const { exitTime } = req.body
 
-        const registrationById = await Registration.findOne({ where: { id } })
-
-        // If registration by id doesn't exist send message error
-        if (!readRegistrationById) {
-            return res.status(404).json({
-                status: 'error',
-                message: `Registration by ${id} id not found`,
-            })
-        }
+        const { registrationById } = req
 
         await registrationById.update({
             status: 'out',
@@ -81,17 +62,7 @@ const updateRegistrationById = async (req, res) => {
 
 const deleteRegistrationById = async (req, res) => {
     try {
-        const { id } = req.params
-
-        const registrationById = await Registration.findOne({ where: { id } })
-
-        // If registration by id doesn't exist send message error
-        if (!readRegistrationById) {
-            return res.status(404).json({
-                status: 'error',
-                message: `Registration by ${id} id not found`,
-            })
-        }
+        const { registrationById } = req
 
         await registrationById.update({
             status: 'cancelled',
