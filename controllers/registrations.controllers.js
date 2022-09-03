@@ -27,17 +27,13 @@ const readAllRegistrations = async (req, res) => {
     }
 }
 
-const readRegistrationById = async (req, res) => {
-    try {
-        const { registrationById } = req
+const readRegistrationById = (req, res) => {
+    const { registrationById } = req
 
-        res.status(200).json({
-            status: 'success',
-            data: registrationById,
-        })
-    } catch (err) {
-        console.log(err)
-    }
+    res.status(200).json({
+        status: 'success',
+        data: registrationById,
+    })
 }
 
 const updateRegistrationById = async (req, res) => {

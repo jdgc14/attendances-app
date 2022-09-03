@@ -23,19 +23,16 @@ const findRegistration = async (req, res, next) => {
 }
 
 // Validate status of registration is 'working'
-const registrarionIsActive = async (req, res, next) => {
-    try {
-        const { registrationById } = req
+const registrarionIsActive = (req, res, next) => {
+    const { registrationById } = req
 
-        if (registrationById.status !== 'working') {
-            return res.status(400).json({
-                status: 'error',
-                message: `Registration already ${registrationById.status}`,
-            })
-        }
-    } catch (err) {
-        console.log(err)
+    if (registrationById.status !== 'working') {
+        return res.status(400).json({
+            status: 'error',
+            message: `Registration already ${registrationById.status}`,
+        })
     }
+
     next()
 }
 
